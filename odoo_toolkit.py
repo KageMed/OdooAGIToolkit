@@ -12,4 +12,4 @@ class OdooToolkit(BaseToolkit, ABC):
         return [OdooTool()]
 
     def get_env_keys(self) -> List[str]:
-        return ["API_SECRET_TOKEN", "API_Key", "ODOO_URL"]
+        return ["ODOO_URL", "API_SECRET_TOKEN", "API_Key"]

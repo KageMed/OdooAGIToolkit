@@ -6,23 +6,23 @@ import json
 from requests.structures import CaseInsensitiveDict
 
 
-#class GreetingsInput(BaseModel):
-#    greetings: str = Field(..., description="Greeting message to be sent")
+class OdooToolInput(BaseModel):
+   pass
 
 
 class OdooTool(BaseTool):
     """
-    Get active products
+    Get active products from Odoo
     """
-    name: str = "Get active products"
-    #args_schema: Type[BaseModel] = GreetingsInput
+    name: str = "Get active products from Odoo"
+    args_schema: Type[BaseModel] = OdooToolInput
     description: str = "Get active products from Odoo"
 
     def _execute(self):
 
         url = self.get_tool_config("ODOO_URL") + "/get_products"
         headers = CaseInsensitiveDict()
-        headers["Authorization"] = self.get_tool_config("API_Key")
+        headers["Authorization"] = "Basic " + self.get_tool_config("API_Key")
         headers["AWS-API-Secret"] = self.get_tool_config("API_SECRET_TOKEN")
         headers["Content-Type"] = ""
         resp = requests.get(url, headers=headers)
